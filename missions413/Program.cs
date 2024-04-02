@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using missions413.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+});
 
 var app = builder.Build();
 
